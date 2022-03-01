@@ -1,17 +1,15 @@
 const computerDisplay = document.getElementById('computer-choice');
 const userDisplay = document.getElementById('your-choice');
 const resultsDisplay = document.getElementById('results');
+const possibleChoices = document.querySelectorAll('button');
 let userChoice;
 let computerChoice;
 let result;
 
-const possibleChoices = document.querySelectorAll('button');
-let user;
-
 possibleChoices.forEach((possibleChoices) =>
   possibleChoices.addEventListener('click', (e) => {
-    user = e.target.id;
-    userDisplay.innerHTML = user;
+    userChoice = e.target.id;
+    userDisplay.innerHTML = userChoice;
     generateComputerChoice();
     getResult();
   })
@@ -19,7 +17,6 @@ possibleChoices.forEach((possibleChoices) =>
 
 function generateComputerChoice() {
   const randomNumber = Math.floor(Math.random() * possibleChoices.length) + 1;
-  console.log(randomNumber);
 
   if (randomNumber === 1) {
     computerChoice = 'Rock';
@@ -38,25 +35,25 @@ function generateComputerChoice() {
 
 function getResult() {
   if (computerChoice === userChoice) {
-    result = `Draw`;
+    result = 'its a draw!';
   }
-  if (computerChoice === 'Rock' && user === 'Paper') {
-    result = `WOW`;
+  if (computerChoice === 'rock' && userChoice === 'paper') {
+    result = 'you win!';
   }
-  if (computerChoice === 'Rock' && user === 'Scissors') {
-    result = `Unlucky`;
+  if (computerChoice === 'rock' && userChoice === 'scissors') {
+    result = 'you lost!';
   }
-  if (computerChoice === 'Paper' && user === 'Scissors') {
-    result = `WOW`;
+  if (computerChoice === 'paper' && userChoice === 'scissors') {
+    result = 'you win!';
   }
-  if (computerChoice === 'Paper' && user === 'Rock') {
-    result = `Unlucky`;
+  if (computerChoice === 'paper' && userChoice === 'rock') {
+    result = 'you lose!';
   }
-  if (computerChoice === 'Scissors' && user === 'Rock') {
-    result = `WOW`;
+  if (computerChoice === 'scissors' && userChoice === 'rock') {
+    result = 'you win!';
   }
-  if (computerChoice === 'Scissors' && user === 'Paper') {
-    result = `Unlucky`;
+  if (computerChoice === 'scissors' && userChoice === 'paper') {
+    result = 'you lose!';
   }
   resultsDisplay.innerHTML = result;
 }
