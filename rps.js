@@ -3,6 +3,7 @@ const userDisplay = document.getElementById('your-choice');
 const resultsDisplay = document.getElementById('results');
 let userChoice;
 let computerChoice;
+let result;
 
 const possibleChoices = document.querySelectorAll('button');
 let user;
@@ -12,6 +13,7 @@ possibleChoices.forEach((possibleChoices) =>
     user = e.target.id;
     userDisplay.innerHTML = user;
     generateComputerChoice();
+    getResult();
   })
 );
 
@@ -32,4 +34,29 @@ function generateComputerChoice() {
   }
 
   computerDisplay.innerHTML = computerChoice;
+}
+
+function getResult() {
+  if (computerChoice === userChoice) {
+    result = `Draw`;
+  }
+  if (computerChoice === 'Rock' && user === 'Paper') {
+    result = `WOW`;
+  }
+  if (computerChoice === 'Rock' && user === 'Scissors') {
+    result = `Unlucky`;
+  }
+  if (computerChoice === 'Paper' && user === 'Scissors') {
+    result = `WOW`;
+  }
+  if (computerChoice === 'Paper' && user === 'Rock') {
+    result = `Unlucky`;
+  }
+  if (computerChoice === 'Scissors' && user === 'Rock') {
+    result = `WOW`;
+  }
+  if (computerChoice === 'Scissors' && user === 'Paper') {
+    result = `Unlucky`;
+  }
+  resultsDisplay.innerHTML = result;
 }
